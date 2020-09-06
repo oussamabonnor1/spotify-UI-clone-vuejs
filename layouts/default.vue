@@ -1,18 +1,22 @@
 <template>
   <v-app dark>
     <v-navigation-drawer
+      color="black"
       permenant
-      app
-    >
-      <v-list>
+      app>
+        <v-img 
+        class="ml-4 mt-4 mr-12 mb-6"
+        src="https://berndvoss.com/wp-content/uploads/2018/10/spotify-transp-white-1.png"></v-img>
+      <v-list nav>
         <v-list-item
           v-for="(item, i) in items"
           :key="i"
           :to="item.to"
           router
           exact
+          class="ma-1"
         >
-          <v-list-item-action>
+          <v-list-item-action class="mr-4">
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-item-action>
           <v-list-item-content>
@@ -20,30 +24,48 @@
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <v-col>
+        <span class="text-button text-uppercase grey--text ml-2">Playlists</span>
+        <v-list-item class="pl-2">
+          <v-list-item-action class="mr-4">
+            <v-icon>mdi-plus</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Create Playlist</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item class="pl-2">
+          <v-list-item-action class="mr-4">
+            <v-icon>mdi-heart</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Liked Songs</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider class="ml-2 mt-2"></v-divider>
+        <v-list-item class="pl-2">
+          <v-list-item-action class="mr-4">
+            <v-icon>mdi-download-circle-outline</v-icon>
+          </v-list-item-action>
+          <v-list-item-content>
+            <v-list-item-title>Install App</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-col>
+      <v-img class="fill-width" src="https://images-na.ssl-images-amazon.com/images/I/61Uxg-SWExL._SL1500_.jpg"></v-img>
     </v-navigation-drawer>
     <v-app-bar
+      flat
+      style="background:#121212"
       app
     >
-      <v-toolbar-title v-text="title" />
-      <v-spacer />
-      <v-btn
-        icon
-        @click.stop="rightDrawer = !rightDrawer"
-      >
-        <v-icon>mdi-menu</v-icon>
-      </v-btn>
+    <v-row></v-row>
     </v-app-bar>
     <v-main>
       <v-container>
         <nuxt />
       </v-container>
     </v-main>
-    <v-footer
-      :absolute="!fixed"
-      app
-    >
-      <span>&copy; {{ new Date().getFullYear() }}</span>
-    </v-footer>
   </v-app>
 </template>
 
@@ -51,26 +73,28 @@
 export default {
   data () {
     return {
-      clipped: false,
-      drawer: false,
-      fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
+          icon: 'mdi-home',
+          title: 'Home',
           to: '/'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'mdi-magnify',
+          title: 'Search',
+          to: '/search'
+        },
+        {
+          icon: 'mdi-playlist-music',
+          title: 'Your library',
+          to: '/library'
         }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      ]
     }
   }
 }
 </script>
+
+<style>
+html { overflow-y: auto }
+</style>
