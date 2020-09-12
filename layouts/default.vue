@@ -67,14 +67,21 @@
     </v-app-bar>
     <v-main>
       <v-container>
-        <nuxt />
+        <nuxt /> 
       </v-container>
     </v-main>
+    <v-footer app fixed>
+      <MusicPlayer></MusicPlayer>
+    </v-footer>
   </v-app>
 </template>
 
 <script>
+import MusicPlayer from "@/components/music_player"
 export default {
+  components:{
+    MusicPlayer
+  },
   data() {
     return {
       items: [
@@ -100,7 +107,4 @@ export default {
 </script>
 
 <style>
-html {
-  overflow-y: hidden;
-}
 </style>
